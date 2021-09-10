@@ -313,22 +313,22 @@ where the definition starts.</p>
 </div>
 <div id="return" class="section level2" number="3.3">
 <h2><span class="header-section-number">3.3</span> <code>return()</code></h2>
-<p>Only use <code>return()</code> for early returns. Otherwise, rely on R to return the result
+<p>Use <code>return()</code>. Do not rely on R to return the result
 of the last evaluated expression.</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="functions.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Good</span></span>
 <span id="cb34-2"><a href="functions.html#cb34-2" aria-hidden="true" tabindex="-1"></a>find_abs <span class="ot">=</span> <span class="cf">function</span>(x) {</span>
 <span id="cb34-3"><a href="functions.html#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
 <span id="cb34-4"><a href="functions.html#cb34-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(x)</span>
 <span id="cb34-5"><a href="functions.html#cb34-5" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb34-6"><a href="functions.html#cb34-6" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">*</span> <span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb34-6"><a href="functions.html#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x <span class="sc">*</span> <span class="sc">-</span><span class="dv">1</span>)</span>
 <span id="cb34-7"><a href="functions.html#cb34-7" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb34-8"><a href="functions.html#cb34-8" aria-hidden="true" tabindex="-1"></a>add_two <span class="ot">=</span> <span class="cf">function</span>(x, y) {</span>
-<span id="cb34-9"><a href="functions.html#cb34-9" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">+</span> y</span>
+<span id="cb34-9"><a href="functions.html#cb34-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x <span class="sc">+</span> y)</span>
 <span id="cb34-10"><a href="functions.html#cb34-10" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb34-11"><a href="functions.html#cb34-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-12"><a href="functions.html#cb34-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Bad</span></span>
 <span id="cb34-13"><a href="functions.html#cb34-13" aria-hidden="true" tabindex="-1"></a>add_two <span class="ot">=</span> <span class="cf">function</span>(x, y) {</span>
-<span id="cb34-14"><a href="functions.html#cb34-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x <span class="sc">+</span> y)</span>
+<span id="cb34-14"><a href="functions.html#cb34-14" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">+</span> y</span>
 <span id="cb34-15"><a href="functions.html#cb34-15" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Return statements should always be on their own line because they have important effects on the control flow. See also <a href="syntax.html#inline-statements">inline statements</a>.</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="functions.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Good</span></span>
