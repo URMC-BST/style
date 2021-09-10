@@ -45,9 +45,9 @@ will cause confusion for the readers of your code.
 
 ```{r, eval = FALSE}
 # Bad
-T <- FALSE
-c <- 10
-mean <- function(x) sum(x)
+T = FALSE
+c = 10
+mean = function(x) sum(x)
 ```
 
 ## Spacing
@@ -110,14 +110,14 @@ The embracing operator, `{{ }}`, should always have inner spaces to help emphasi
 
 ```{r, eval = FALSE}
 # Good
-max_by <- function(data, var, by) {
+max_by = function(data, var, by) {
   data %>%
     group_by({{ by }}) %>%
     summarise(maximum = max({{ var }}, na.rm = TRUE))
 }
 
 # Bad
-max_by <- function(data, var, by) {
+max_by = function(data, var, by) {
   data %>%
     group_by({{by}}) %>%
     summarise(maximum = max({{var}}, na.rm = TRUE))
@@ -127,16 +127,16 @@ max_by <- function(data, var, by) {
 
 ### Infix operators
 
-Most infix operators (`==`, `+`, `-`, `<-`, etc.) should always be surrounded by
+Most infix operators (`==`, `+`, `-`, `=`, etc.) should always be surrounded by
 spaces:
 
 ```{r, eval = FALSE}
 # Good
-height <- (feet * 12) + inches
+height = (feet * 12) + inches
 mean(x, na.rm = TRUE)
 
 # Bad
-height<-feet*12+inches
+height=feet*12+inches
 mean(x, na.rm=TRUE)
 ```
 
@@ -149,12 +149,12 @@ There are a few exceptions, which should never be surrounded by spaces:
     # Good
     sqrt(x^2 + y^2)
     df$z
-    x <- 1:10
+    x = 1:10
 
     # Bad
     sqrt(x ^ 2 + y ^ 2)
     df $ z
-    x <- 1 : 10
+    x = 1 : 10
     ```
   
 *   Single-sided formulas when the right-hand side is a single identifier:
@@ -212,7 +212,7 @@ There are a few exceptions, which should never be surrounded by spaces:
     
 ### Extra spaces
 
-Adding extra spaces is ok if it improves alignment of `=` or `<-`. 
+Adding extra spaces is ok if it improves alignment of `=` or `=`. 
 
 ```{r, eval = FALSE}
 # Good
@@ -257,7 +257,7 @@ Avoid assignment in function calls:
 
 ```{r, eval = FALSE}
 # Good
-x <- complicated_function()
+x = complicated_function()
 if (nzchar(x) < 1) {
   # do something
 }
@@ -271,9 +271,10 @@ if (nzchar(x <- complicated_function()) < 1) {
 The only exception is in functions that capture side-effects:
 
 ```{r, eval = FALSE}
-output <- capture.output(x <- f())
+output = capture.output(x <- f())
 ```
 
+This is an exception not using `<-` for assignment.
 
 ## Control flow
 
@@ -312,7 +313,7 @@ test_that("call1 returns an ordered factor", {
 
 tryCatch(
   {
-    x <- scan()
+    x = scan()
     cat("Total: ", sum(x), "\n", sep = "")
   },
   interrupt = function(e) {
@@ -341,8 +342,8 @@ It's ok to drop the curly braces for very simple statements that fit on one line
 
 ```{r}
 # Good
-y <- 10
-x <- if (y < 20) "Too low" else "Too high"
+y = 10
+x = if (y < 20) "Too low" else "Too high"
 ```
 
 Function calls that affect control flow (like `return()`, `stop()` or `continue`) should always go in their own `{}` block:
@@ -353,7 +354,7 @@ if (y < 0) {
   stop("Y is negative")
 }
 
-find_abs <- function(x) {
+find_abs = function(x) {
   if (x > 0) {
     return(x)
   }
@@ -366,7 +367,7 @@ if (y < 0) stop("Y is negative")
 if (y < 0)
   stop("Y is negative")
 
-find_abs <- function(x) {
+find_abs = function(x) {
   if (x > 0) return(x)
   x * -1
 }
@@ -472,15 +473,17 @@ on one line.
 
 ## Assignment
 
-Use `<-`, not `=`, for assignment.
+Use `=`, not `<-`, for assignment.
 
 ```{r}
 # Good
-x <- 5
+x = 5
 
 # Bad
-x = 5
+x <- 5
 ```
+
+Exception: when capturing side-effects.
 
 ## Data
 

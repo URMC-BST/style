@@ -9,6 +9,8 @@ documentclass: book
 
 # Welcome {-}
 
+This is an edited version of https://github.com/tidyverse/style.
+
 Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread. This site describes the style used throughout the [tidyverse](http://tidyverse.org). It was derived from Google's original R Style Guide - but
 Google's [current guide](https://google.github.io/styleguide/Rguide.html) is derived from the tidyverse style guide.
 
@@ -27,3 +29,5 @@ Two R packages support this style guide:
     
 *   [lintr](https://github.com/jimhester/lintr) performs automated checks
     to confirm that you conform to the style guide.
+    
+

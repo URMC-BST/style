@@ -55,9 +55,9 @@ Many news bullets will be a single sentence. This is typically adequate when des
   computations with ggplot2.
   
   ```R
-  sturges <- function(x) {
-    rng <- range(x)
-    bins <- nclass.Sturges(x)
+  sturges = function(x) {
+    rng = range(x)
+    bins = nclass.Sturges(x)
     
     (rng[2] - rng[1]) / bins
   }
