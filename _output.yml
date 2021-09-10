@@ -5,10 +5,10 @@ bookdown::gitbook:
   config:
     toc:
       before: |
-        <li><a href="./">R Style Guide</a></li>
+        <li><a href="./">An R Style Guide that uses =</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-    edit: https://github.com/tidyverse/style/edit/master/%s
+    edit: https://github.com/URMC-BST/style/edit/master/%s
     sharing: no
     download: ["pdf", "epub"]
 

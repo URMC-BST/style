@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>9 Error messages | The tidyverse style guide</title>
+  <meta name="description" content="9 Error messages | The tidyverse style guide" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="9 Error messages | The tidyverse style guide" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="tidyverse/style" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="9 Error messages | The tidyverse style guide" />
+  
+  
+  
+
+<meta name="author" content="Hadley Wickham" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="tests.html"/>
+<link rel="next" href="news.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-115082821-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-115082821-1');
+</script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">An R Style Guide that uses =</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="part"><span><b>I Analyses</b></span></li>
+<li class="chapter" data-level="1" data-path="files.html"><a href="files.html"><i class="fa fa-check"></i><b>1</b> Files</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="files.html"><a href="files.html#names"><i class="fa fa-check"></i><b>1.1</b> Names</a></li>
+<li class="chapter" data-level="1.2" data-path="files.html"><a href="files.html#organisation"><i class="fa fa-check"></i><b>1.2</b> Organisation</a></li>
+<li class="chapter" data-level="1.3" data-path="files.html"><a href="files.html#internal-structure"><i class="fa fa-check"></i><b>1.3</b> Internal structure</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="syntax.html"><a href="syntax.html"><i class="fa fa-check"></i><b>2</b> Syntax</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="syntax.html"><a href="syntax.html#object-names"><i class="fa fa-check"></i><b>2.1</b> Object names</a></li>
+<li class="chapter" data-level="2.2" data-path="syntax.html"><a href="syntax.html#spacing"><i class="fa fa-check"></i><b>2.2</b> Spacing</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="syntax.html"><a href="syntax.html#commas"><i class="fa fa-check"></i><b>2.2.1</b> Commas</a></li>
+<li class="chapter" data-level="2.2.2" data-path="syntax.html"><a href="syntax.html#parentheses"><i class="fa fa-check"></i><b>2.2.2</b> Parentheses</a></li>
+<li class="chapter" data-level="2.2.3" data-path="syntax.html"><a href="syntax.html#embracing"><i class="fa fa-check"></i><b>2.2.3</b> Embracing</a></li>
+<li class="chapter" data-level="2.2.4" data-path="syntax.html"><a href="syntax.html#infix-operators"><i class="fa fa-check"></i><b>2.2.4</b> Infix operators</a></li>
+<li class="chapter" data-level="2.2.5" data-path="syntax.html"><a href="syntax.html#extra-spaces"><i class="fa fa-check"></i><b>2.2.5</b> Extra spaces</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="syntax.html"><a href="syntax.html#function-calls"><i class="fa fa-check"></i><b>2.3</b> Function calls</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="syntax.html"><a href="syntax.html#argument-names"><i class="fa fa-check"></i><b>2.3.1</b> Named arguments</a></li>
+<li class="chapter" data-level="2.3.2" data-path="syntax.html"><a href="syntax.html#assignment"><i class="fa fa-check"></i><b>2.3.2</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="syntax.html"><a href="syntax.html#control-flow"><i class="fa fa-check"></i><b>2.4</b> Control flow</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="syntax.html"><a href="syntax.html#indenting"><i class="fa fa-check"></i><b>2.4.1</b> Code blocks</a></li>
+<li class="chapter" data-level="2.4.2" data-path="syntax.html"><a href="syntax.html#inline-statements"><i class="fa fa-check"></i><b>2.4.2</b> Inline statements</a></li>
+<li class="chapter" data-level="2.4.3" data-path="syntax.html"><a href="syntax.html#implicit-type-coercion"><i class="fa fa-check"></i><b>2.4.3</b> Implicit type coercion</a></li>
+<li class="chapter" data-level="2.4.4" data-path="syntax.html"><a href="syntax.html#switch-statements"><i class="fa fa-check"></i><b>2.4.4</b> Switch statements</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="syntax.html"><a href="syntax.html#long-lines"><i class="fa fa-check"></i><b>2.5</b> Long lines</a></li>
+<li class="chapter" data-level="2.6" data-path="syntax.html"><a href="syntax.html#semicolons"><i class="fa fa-check"></i><b>2.6</b> Semicolons</a></li>
+<li class="chapter" data-level="2.7" data-path="syntax.html"><a href="syntax.html#assignment-1"><i class="fa fa-check"></i><b>2.7</b> Assignment</a></li>
+<li class="chapter" data-level="2.8" data-path="syntax.html"><a href="syntax.html#data"><i class="fa fa-check"></i><b>2.8</b> Data</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="syntax.html"><a href="syntax.html#character-vectors"><i class="fa fa-check"></i><b>2.8.1</b> Character vectors</a></li>
+<li class="chapter" data-level="2.8.2" data-path="syntax.html"><a href="syntax.html#logical-vectors"><i class="fa fa-check"></i><b>2.8.2</b> Logical vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="syntax.html"><a href="syntax.html#comments"><i class="fa fa-check"></i><b>2.9</b> Comments</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>3</b> Functions</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="functions.html"><a href="functions.html#naming"><i class="fa fa-check"></i><b>3.1</b> Naming</a></li>
+<li class="chapter" data-level="3.2" data-path="functions.html"><a href="functions.html#long-lines-1"><i class="fa fa-check"></i><b>3.2</b> Long lines</a></li>
+<li class="chapter" data-level="3.3" data-path="functions.html"><a href="functions.html#return"><i class="fa fa-check"></i><b>3.3</b> <code>return()</code></a></li>
+<li class="chapter" data-level="3.4" data-path="functions.html"><a href="functions.html#comments-1"><i class="fa fa-check"></i><b>3.4</b> Comments</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="pipes.html"><a href="pipes.html"><i class="fa fa-check"></i><b>4</b> Pipes</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="pipes.html"><a href="pipes.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="pipes.html"><a href="pipes.html#whitespace"><i class="fa fa-check"></i><b>4.2</b> Whitespace</a></li>
+<li class="chapter" data-level="4.3" data-path="pipes.html"><a href="pipes.html#long-lines-2"><i class="fa fa-check"></i><b>4.3</b> Long lines</a></li>
+<li class="chapter" data-level="4.4" data-path="pipes.html"><a href="pipes.html#short-pipes"><i class="fa fa-check"></i><b>4.4</b> Short pipes</a></li>
+<li class="chapter" data-level="4.5" data-path="pipes.html"><a href="pipes.html#no-arguments"><i class="fa fa-check"></i><b>4.5</b> No arguments</a></li>
+<li class="chapter" data-level="4.6" data-path="pipes.html"><a href="pipes.html#assignment-2"><i class="fa fa-check"></i><b>4.6</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>5</b> ggplot2</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="ggplot2.html"><a href="ggplot2.html#introduction-1"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="ggplot2.html"><a href="ggplot2.html#whitespace-1"><i class="fa fa-check"></i><b>5.2</b> Whitespace</a></li>
+<li class="chapter" data-level="5.3" data-path="ggplot2.html"><a href="ggplot2.html#long-lines-3"><i class="fa fa-check"></i><b>5.3</b> Long lines</a></li>
+</ul></li>
+<li class="part"><span><b>II Packages</b></span></li>
+<li class="chapter" data-level="6" data-path="package-files.html"><a href="package-files.html"><i class="fa fa-check"></i><b>6</b> Files</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="package-files.html"><a href="package-files.html#names-1"><i class="fa fa-check"></i><b>6.1</b> Names</a></li>
+<li class="chapter" data-level="6.2" data-path="package-files.html"><a href="package-files.html#organisation-1"><i class="fa fa-check"></i><b>6.2</b> Organisation</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="documentation.html"><a href="documentation.html"><i class="fa fa-check"></i><b>7</b> Documentation</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="documentation.html"><a href="documentation.html#introduction-2"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="documentation.html"><a href="documentation.html#title-and-description"><i class="fa fa-check"></i><b>7.2</b> Title and description</a></li>
+<li class="chapter" data-level="7.3" data-path="documentation.html"><a href="documentation.html#indents-and-line-breaks"><i class="fa fa-check"></i><b>7.3</b> Indents and line breaks</a></li>
+<li class="chapter" data-level="7.4" data-path="documentation.html"><a href="documentation.html#documenting-parameters"><i class="fa fa-check"></i><b>7.4</b> Documenting parameters</a></li>
+<li class="chapter" data-level="7.5" data-path="documentation.html"><a href="documentation.html#capitalization-and-full-stops"><i class="fa fa-check"></i><b>7.5</b> Capitalization and full stops</a></li>
+<li class="chapter" data-level="7.6" data-path="documentation.html"><a href="documentation.html#cross-linking"><i class="fa fa-check"></i><b>7.6</b> Cross-linking</a></li>
+<li class="chapter" data-level="7.7" data-path="documentation.html"><a href="documentation.html#r-code"><i class="fa fa-check"></i><b>7.7</b> R code</a></li>
+<li class="chapter" data-level="7.8" data-path="documentation.html"><a href="documentation.html#internal-functions"><i class="fa fa-check"></i><b>7.8</b> Internal functions</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="tests.html"><a href="tests.html"><i class="fa fa-check"></i><b>8</b> Tests</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="tests.html"><a href="tests.html#organisation-2"><i class="fa fa-check"></i><b>8.1</b> Organisation</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="error-messages.html"><a href="error-messages.html"><i class="fa fa-check"></i><b>9</b> Error messages</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="error-messages.html"><a href="error-messages.html#problem-statement"><i class="fa fa-check"></i><b>9.1</b> Problem statement</a></li>
+<li class="chapter" data-level="9.2" data-path="error-messages.html"><a href="error-messages.html#error-location"><i class="fa fa-check"></i><b>9.2</b> Error location</a></li>
+<li class="chapter" data-level="9.3" data-path="error-messages.html"><a href="error-messages.html#hints"><i class="fa fa-check"></i><b>9.3</b> Hints</a></li>
+<li class="chapter" data-level="9.4" data-path="error-messages.html"><a href="error-messages.html#punctuation"><i class="fa fa-check"></i><b>9.4</b> Punctuation</a></li>
+<li class="chapter" data-level="9.5" data-path="error-messages.html"><a href="error-messages.html#before-and-after"><i class="fa fa-check"></i><b>9.5</b> Before and after</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="news.html"><a href="news.html"><i class="fa fa-check"></i><b>10</b> News</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="news.html"><a href="news.html#bullets"><i class="fa fa-check"></i><b>10.1</b> Bullets</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="news.html"><a href="news.html#general-style"><i class="fa fa-check"></i><b>10.1.1</b> General style</a></li>
+<li class="chapter" data-level="10.1.2" data-path="news.html"><a href="news.html#acknowledgement"><i class="fa fa-check"></i><b>10.1.2</b> Acknowledgement</a></li>
+<li class="chapter" data-level="10.1.3" data-path="news.html"><a href="news.html#code-style"><i class="fa fa-check"></i><b>10.1.3</b> Code style</a></li>
+<li class="chapter" data-level="10.1.4" data-path="news.html"><a href="news.html#common-patterns"><i class="fa fa-check"></i><b>10.1.4</b> Common patterns</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="news.html"><a href="news.html#organisation-3"><i class="fa fa-check"></i><b>10.2</b> Organisation</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="news.html"><a href="news.html#development"><i class="fa fa-check"></i><b>10.2.1</b> Development</a></li>
+<li class="chapter" data-level="10.2.2" data-path="news.html"><a href="news.html#news-release"><i class="fa fa-check"></i><b>10.2.2</b> Release</a></li>
+<li class="chapter" data-level="10.2.3" data-path="news.html"><a href="news.html#breaking-changes"><i class="fa fa-check"></i><b>10.2.3</b> Breaking changes</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="news.html"><a href="news.html#blog-post"><i class="fa fa-check"></i><b>10.3</b> Blog post</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="gitgithub.html"><a href="gitgithub.html"><i class="fa fa-check"></i><b>11</b> Git/GitHub</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="gitgithub.html"><a href="gitgithub.html#commit-messages"><i class="fa fa-check"></i><b>11.1</b> Commit messages</a></li>
+<li class="chapter" data-level="11.2" data-path="gitgithub.html"><a href="gitgithub.html#pull-requests"><i class="fa fa-check"></i><b>11.2</b> Pull requests</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The tidyverse style guide</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="error-messages" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> Error messages</h1>
+<p>An error message should start with a general statement of the problem then give
+a concise description of what went wrong. Consistent use of punctuation and
+formatting makes errors easier to parse.</p>
+<p>(This guide is currently almost entirely aspirational; most of the bad examples
+come from existing tidyverse code.)</p>
+<div id="problem-statement" class="section level2" number="9.1">
+<h2><span class="header-section-number">9.1</span> Problem statement</h2>
+<p>Every error message should start with a general statement of the problem. It
+should be concise, but informative. (This is hard!)</p>
+<p>It is encouraged to be as informative as possible, but each sentence should be very simple to make localisation and translation possible. <a href="https://metacpan.org/pod/distribution/Locale-Maketext/lib/Locale/Maketext/TPJ13.pod">A Localization Horror Story: It Could Happen To You</a> is a Good summary of the challenges of localising error messages. You might not support localised messages right now but you should make it as easy as possible to do it in the future.</p>
+<p>Ideally each sentence should contain a single phrase, and should only mention one variable quantity. Because we avoid complex sentences, we prefer to lay out information in a bullet list. Start with a list of <em>contextual</em> information, and finish with a list of information about <em>faulty</em> user input. These lists should be prefixed with <code>ℹ</code> and <code>✖</code> respectively if UTF-8 is available (and in blue and red if colour is available), or the ASCII <code>*</code> character otherwise.</p>
+<ul>
+<li><p>If the cause of the problem is clear, use “must”:</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="error-messages.html#cb66-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">nth</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="st">&quot;x&quot;</span>)</span>
+<span id="cb66-2"><a href="error-messages.html#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error: `n` must be a numeric vector:</span></span>
+<span id="cb66-3"><a href="error-messages.html#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✖ You&#39;ve supplied a character vector.</span></span>
+<span id="cb66-4"><a href="error-messages.html#cb66-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-5"><a href="error-messages.html#cb66-5" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">nth</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span>
+<span id="cb66-6"><a href="error-messages.html#cb66-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error: `n` must have length 1</span></span>
+<span id="cb66-7"><a href="error-messages.html#cb66-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✖ You&#39;ve supplied a vector of length 2.</span></span></code></pre></div>
+<p>Clear cut causes typically involve incorrect types or lengths.</p></li>
+<li><p>If you cannot state what was expected, use “can’t”:</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="error-messages.html#cb67-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span> <span class="fu">pull</span>(b)</span>
+<span id="cb67-2"><a href="error-messages.html#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error: Can&#39;t find column `b` in `.data`.</span></span>
+<span id="cb67-3"><a href="error-messages.html#cb67-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-4"><a href="error-messages.html#cb67-4" aria-hidden="true" tabindex="-1"></a><span class="fu">as_vector</span>(<span class="fu">environment</span>())</span>
+<span id="cb67-5"><a href="error-messages.html#cb67-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error: Can&#39;t coerce `.x` to a vector.</span></span>
+<span id="cb67-6"><a href="error-messages.html#cb67-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-7"><a href="error-messages.html#cb67-7" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">modify_depth</span>(<span class="fu">list</span>(<span class="fu">list</span>(<span class="at">x =</span> <span class="dv">1</span>)), <span class="dv">3</span>, <span class="sc">~</span> . <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb67-8"><a href="error-messages.html#cb67-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error: Can&#39;t find specified `.depth` in `.x`.</span></span></code></pre></div></li>
+</ul>
+<p>The problem statement should use sentence case and end with a full stop.</p>
+<p>Use <code>stop(call. = FALSE)</code>, <code>rlang::abort()</code>, <code>Rf_errorcall(R_NilValue, ...)</code> to
+avoid cluttering the error message with the name of the function that generated
+it. That information is often not informative, and can easily be accessed via
+<code>traceback()</code> or an IDE equivalent.</p>
+<p>Use simple sentences layed out in a bullet list of <code>ℹ</code> and <code>✖</code> elements:</p>
+<ul>
+<li><p>The sentences should be short and bulleted:</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="error-messages.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Good</span></span>
+<span id="cb68-2"><a href="error-messages.html#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vec_slice</span>(letters, <span class="dv">100</span>)</span>
+<span id="cb68-3"><a href="error-messages.html#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Must index an existing element:</span></span>
+<span id="cb68-4"><a href="error-messages.html#cb68-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ There are 26 elements.</span></span>
+<span id="cb68-5"><a href="error-messages.html#cb68-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✖ You&#39;ve tried to subset element 100.</span></span>
+<span id="cb68-6"><a href="error-messages.html#cb68-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-7"><a href="error-messages.html#cb68-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Bad</span></span>
+<span id="cb68-8"><a href="error-messages.html#cb68-8" aria-hidden="true" tabindex="-1"></a><span class="fu">vec_slice</span>(letters, <span class="dv">100</span>)</span>
+<span id="cb68-9"><a href="error-messages.html#cb68-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Must index an existing element.</span></span>
+<span id="cb68-10"><a href="error-messages.html#cb68-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; There are 26 elements and you&#39;ve tried to subset element 100.</span></span></code></pre></div></li>
+<li><p>The contextual information should be first:</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="error-messages.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Good</span></span>
+<span id="cb69-2"><a href="error-messages.html#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vec_slice</span>(letters, <span class="dv">100</span>)</span>
+<span id="cb69-3"><a href="error-messages.html#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Must index an existing element:</span></span>
+<span id="cb69-4"><a href="error-messages.html#cb69-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ There are 26 elements.</span></span>
+<span id="cb69-5"><a href="error-messages.html#cb69-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✖ You&#39;ve tried to subset element 100.</span></span>
+<span id="cb69-6"><a href="error-messages.html#cb69-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-7"><a href="error-messages.html#cb69-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Bad</span></span>
+<span id="cb69-8"><a href="error-messages.html#cb69-8" aria-hidden="true" tabindex="-1"></a><span class="fu">vec_slice</span>(letters, <span class="dv">100</span>)</span>
+<span id="cb69-9"><a href="error-messages.html#cb69-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Must index an existing element:</span></span>
+<span id="cb69-10"><a href="error-messages.html#cb69-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✖ You&#39;ve tried to subset element 100.</span></span>
+<span id="cb69-11"><a href="error-messages.html#cb69-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ There are 26 elements.</span></span></code></pre></div></li>
+</ul>
+</div>
+<div id="error-location" class="section level2" number="9.2">
+<h2><span class="header-section-number">9.2</span> Error location</h2>
+<p>Do your best to reveal the location, name, and/or content of the troublesome
+component. The goal is to make it as easy as possible for the user to find and
+fix the problem.</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="error-messages.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Good</span></span>
+<span id="cb70-2"><a href="error-messages.html#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">map_int</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="sc">~</span> <span class="st">&quot;x&quot;</span>)</span>
+<span id="cb70-3"><a href="error-messages.html#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error: Each result must be a single integer:</span></span>
+<span id="cb70-4"><a href="error-messages.html#cb70-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✖ Result 1 is a character vector.</span></span>
+<span id="cb70-5"><a href="error-messages.html#cb70-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-6"><a href="error-messages.html#cb70-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Bad</span></span>
+<span id="cb70-7"><a href="error-messages.html#cb70-7" aria-hidden="true" tabindex="-1"></a><span class="fu">map_int</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="sc">~</span> <span class="st">&quot;x&quot;</span>)</span>
+<span id="cb70-8"><a href="error-messages.html#cb70-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error: Each result must be a single integer</span></span></code></pre></div>
+<p>(It is often not easy to identify the exact problem; it may require passing
+around extra arguments so that error messages generated at a lower-level can
+know the original source. For frequently used functions, the effort is typically
+worth it.)</p>
+<p>If the source of the error is unclear, avoid pointing the user in the wrong
+direction by giving an opinion about the source of the error:</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="error-messages.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Good</span></span>
+<span id="cb71-2"><a href="error-messages.html#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pull</span>(mtcars, b)</span>
+<span id="cb71-3"><a href="error-messages.html#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error: Can&#39;t find column `b` in `.data`.</span></span>
+<span id="cb71-4"><a href="error-messages.html#cb71-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-5"><a href="error-messages.html#cb71-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">y =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">z =</span> <span class="dv">1</span>)</span>
+<span id="cb71-6"><a href="error-messages.html#cb71-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error: Columns must have consistent lengths: </span></span>
+<span id="cb71-7"><a href="error-messages.html#cb71-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✖ Column `x` has length 2</span></span>
+<span id="cb71-8"><a href="error-messages.html#cb71-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✖ Column `y` has length 3</span></span>
+<span id="cb71-9"><a href="error-messages.html#cb71-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-10"><a href="error-messages.html#cb71-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Bad: implies one argument at fault</span></span>
+<span id="cb71-11"><a href="error-messages.html#cb71-11" aria-hidden="true" tabindex="-1"></a><span class="fu">pull</span>(mtcars, b)</span>
+<span id="cb71-12"><a href="error-messages.html#cb71-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error: Column `b` must exist in `.data`</span></span>
+<span id="cb71-13"><a href="error-messages.html#cb71-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-14"><a href="error-messages.html#cb71-14" aria-hidden="true" tabindex="-1"></a><span class="fu">pull</span>(mtcars, b)</span>
+<span id="cb71-15"><a href="error-messages.html#cb71-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error: `.data` must contain column `b`</span></span>
+<span id="cb71-16"><a href="error-messages.html#cb71-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-17"><a href="error-messages.html#cb71-17" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">y =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">z =</span> <span class="dv">1</span>)</span>
+<span id="cb71-18"><a href="error-messages.html#cb71-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error: Column `x` must be length 1 or 3, not 2 </span></span></code></pre></div>
+<p>If there are multiple issues, or an inconsistency revealed across several
+arguments or items, prefer a bulleted list:</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="error-messages.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Good</span></span>
+<span id="cb72-2"><a href="error-messages.html#cb72-2" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">reduce2</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="st">`</span><span class="at">+</span><span class="st">`</span>)</span>
+<span id="cb72-3"><a href="error-messages.html#cb72-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error: `.x` and `.y` must have compatible lengths:</span></span>
+<span id="cb72-4"><a href="error-messages.html#cb72-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✖ `.x` has length 4</span></span>
+<span id="cb72-5"><a href="error-messages.html#cb72-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✖ `.y` has length 2</span></span>
+<span id="cb72-6"><a href="error-messages.html#cb72-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-7"><a href="error-messages.html#cb72-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Bad: harder to scan</span></span>
+<span id="cb72-8"><a href="error-messages.html#cb72-8" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">reduce2</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="st">`</span><span class="at">+</span><span class="st">`</span>)</span>
+<span id="cb72-9"><a href="error-messages.html#cb72-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error: `.x` and `.y` must have compatible lengths: `.x` has length 4 and </span></span>
+<span id="cb72-10"><a href="error-messages.html#cb72-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `.y` has length 2</span></span></code></pre></div>
+<p>If the list of issues might be long, make sure to truncate to only show the first few:</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="error-messages.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Good</span></span>
+<span id="cb73-2"><a href="error-messages.html#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error: NAs found at 1,000,000 locations: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ...</span></span></code></pre></div>
+<p>If you want to correctly pluralise the error message, consider using <code>ngettext()</code>. See the notes in <code>?ngettext()</code> for some challenges related to correct translation to other languages.</p>
+</div>
+<div id="hints" class="section level2" number="9.3">
+<h2><span class="header-section-number">9.3</span> Hints</h2>
+<p>If the source of the error is clear and common, you may want to provide a hint as
+to how to fix it. If UTF-8 is available, prefix with <code>ℹ</code> (in blue if colour is available):</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="error-messages.html#cb74-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">filter</span>(iris, <span class="at">Species =</span> <span class="st">&quot;setosa&quot;</span>)</span>
+<span id="cb74-2"><a href="error-messages.html#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error: Filter specifications must be named.</span></span>
+<span id="cb74-3"><a href="error-messages.html#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Did you mean `Species == &quot;setosa&quot;`?</span></span>
+<span id="cb74-4"><a href="error-messages.html#cb74-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-5"><a href="error-messages.html#cb74-5" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(ggplot2<span class="sc">::</span><span class="fu">aes</span>())</span>
+<span id="cb74-6"><a href="error-messages.html#cb74-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error: Can&#39;t plot data with class &quot;uneval&quot;. </span></span>
+<span id="cb74-7"><a href="error-messages.html#cb74-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Did you accidentally provide the results of aes() to the `data` argument?</span></span></code></pre></div>
+<p>Hints should always end in a question mark.</p>
+<p>Hints are particularly important if the source of the error is far away from the
+root cause:</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="error-messages.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bad</span></span>
+<span id="cb75-2"><a href="error-messages.html#cb75-2" aria-hidden="true" tabindex="-1"></a>mean[[<span class="dv">1</span>]]</span>
+<span id="cb75-3"><a href="error-messages.html#cb75-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in mean[[1]] : object of type &#39;closure&#39; is not subsettable</span></span>
+<span id="cb75-4"><a href="error-messages.html#cb75-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-5"><a href="error-messages.html#cb75-5" aria-hidden="true" tabindex="-1"></a><span class="co"># BETTER</span></span>
+<span id="cb75-6"><a href="error-messages.html#cb75-6" aria-hidden="true" tabindex="-1"></a>mean[[<span class="dv">1</span>]]</span>
+<span id="cb75-7"><a href="error-messages.html#cb75-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error: Can&#39;t subset a function.</span></span>
+<span id="cb75-8"><a href="error-messages.html#cb75-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-9"><a href="error-messages.html#cb75-9" aria-hidden="true" tabindex="-1"></a><span class="co"># BEST</span></span>
+<span id="cb75-10"><a href="error-messages.html#cb75-10" aria-hidden="true" tabindex="-1"></a>mean[[<span class="dv">1</span>]]</span>
+<span id="cb75-11"><a href="error-messages.html#cb75-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error: Can&#39;t subset a function.</span></span>
+<span id="cb75-12"><a href="error-messages.html#cb75-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Have you forgotten to define a variable named `mean`?</span></span></code></pre></div>
+<p>Good hints are difficult to write because, as above, you want to avoid steering
+users in the wrong direction. Generally, I avoid writing a hint unless the
+problem is common, and you can easily find a common pattern of incorrect usage
+(e.g. by searching StackOverflow).</p>
+</div>
+<div id="punctuation" class="section level2" number="9.4">
+<h2><span class="header-section-number">9.4</span> Punctuation</h2>
+<ul>
+<li><p>Errors should be written in sentence case, and should end in a full stop.
+Bullets should be formatted similarly; make sure to capitalise the first
+word (unless it’s an argument or column name).</p></li>
+<li><p>Prefer the singular in problem statements:</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="error-messages.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Good</span></span>
+<span id="cb76-2"><a href="error-messages.html#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="fu">map_int</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="sc">~</span> <span class="st">&quot;a&quot;</span>)</span>
+<span id="cb76-3"><a href="error-messages.html#cb76-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error: Each result must be coercible to a single integer:</span></span>
+<span id="cb76-4"><a href="error-messages.html#cb76-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✖ Result 1 is a character vector.</span></span>
+<span id="cb76-5"><a href="error-messages.html#cb76-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-6"><a href="error-messages.html#cb76-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Bad</span></span>
+<span id="cb76-7"><a href="error-messages.html#cb76-7" aria-hidden="true" tabindex="-1"></a><span class="fu">map_int</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="sc">~</span> <span class="st">&quot;a&quot;</span>)</span>
+<span id="cb76-8"><a href="error-messages.html#cb76-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error: Results must be coercible to single integers: </span></span>
+<span id="cb76-9"><a href="error-messages.html#cb76-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✖ Result 1 is a character vector</span></span></code></pre></div></li>
+<li><p>If you can detect multiple problems, list up to five. This allows the user
+to fix multiple problems in a single pass without being overwhelmed by
+many errors that may have the same source.</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="error-messages.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co"># BETTER</span></span>
+<span id="cb77-2"><a href="error-messages.html#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="fu">map_int</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="sc">~</span> <span class="st">&quot;a&quot;</span>)</span>
+<span id="cb77-3"><a href="error-messages.html#cb77-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error: Each result must be coercible to a single integer:</span></span>
+<span id="cb77-4"><a href="error-messages.html#cb77-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✖ Result 1 is a character vector</span></span>
+<span id="cb77-5"><a href="error-messages.html#cb77-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✖ Result 2 is a character vector</span></span>
+<span id="cb77-6"><a href="error-messages.html#cb77-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✖ Result 3 is a character vector</span></span>
+<span id="cb77-7"><a href="error-messages.html#cb77-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✖ Result 4 is a character vector</span></span>
+<span id="cb77-8"><a href="error-messages.html#cb77-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✖ Result 5 is a character vector</span></span>
+<span id="cb77-9"><a href="error-messages.html#cb77-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ... and 5 more problems</span></span></code></pre></div></li>
+<li><p>Pick a natural connector between problem statement and error location:
+this may be “, not”, “;”, or “:” depending on the context.</p></li>
+<li><p>Surround the names of arguments in backticks, e.g. <code>`x`</code>.
+Use “column” to disambiguate columns and arguments: <code>Column `x`</code>.
+Avoid “variable”, because it is ambiguous.</p></li>
+<li><p>Ideally, each component of the error message should be less than 80
+characters wide. Do not add manual line breaks to long error messages;
+they will not look correct if the console is narrower (or much wider) than
+expected. Instead, use bullets to break up the error into shorter logical
+components.</p></li>
+</ul>
+</div>
+<div id="before-and-after" class="section level2" number="9.5">
+<h2><span class="header-section-number">9.5</span> Before and after</h2>
+<p>More examples gathered from around the tidyverse.</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="error-messages.html#cb78-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">filter</span>(mtcars, cyl)</span>
+<span id="cb78-2"><a href="error-messages.html#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; BEFORE: Argument 2 filter condition does not evaluate to a logical vector </span></span>
+<span id="cb78-3"><a href="error-messages.html#cb78-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; AFTER:  Each argument must be a logical vector:</span></span>
+<span id="cb78-4"><a href="error-messages.html#cb78-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; * Argument 2 (`cyl`) is an integer vector.</span></span>
+<span id="cb78-5"><a href="error-messages.html#cb78-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-6"><a href="error-messages.html#cb78-6" aria-hidden="true" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">tribble</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>)</span>
+<span id="cb78-7"><a href="error-messages.html#cb78-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; BEFORE: Expected at least one column name; e.g. `~name` </span></span>
+<span id="cb78-8"><a href="error-messages.html#cb78-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; AFTER:  Must supply at least one column name, e.g. `~name`.</span></span>
+<span id="cb78-9"><a href="error-messages.html#cb78-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-10"><a href="error-messages.html#cb78-10" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds) <span class="sc">+</span> ggplot2<span class="sc">::</span><span class="fu">geom_line</span>(ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">x =</span> cut))</span>
+<span id="cb78-11"><a href="error-messages.html#cb78-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; BEFORE: geom_line requires the following missing aesthetics: y</span></span>
+<span id="cb78-12"><a href="error-messages.html#cb78-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; AFTER:  `geom_line()` must have the following aesthetics: `y`.</span></span>
+<span id="cb78-13"><a href="error-messages.html#cb78-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-14"><a href="error-messages.html#cb78-14" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">rename</span>(mtcars, <span class="at">cyl =</span> xxx)</span>
+<span id="cb78-15"><a href="error-messages.html#cb78-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; BEFORE: `xxx` contains unknown variables</span></span>
+<span id="cb78-16"><a href="error-messages.html#cb78-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; AFTER:  Can&#39;t find column `xxx` in `.data`.</span></span>
+<span id="cb78-17"><a href="error-messages.html#cb78-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-18"><a href="error-messages.html#cb78-18" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">arrange</span>(mtcars, xxx)</span>
+<span id="cb78-19"><a href="error-messages.html#cb78-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; BEFORE: Evaluation error: object &#39;xxx&#39; not found.</span></span>
+<span id="cb78-20"><a href="error-messages.html#cb78-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; AFTER:  Can&#39;t find column `xxx` in `.data`.</span></span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="tests.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="news.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/URMC-BST/style/edit/master/errors.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
